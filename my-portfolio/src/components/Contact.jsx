@@ -6,13 +6,51 @@ import { useTheme } from "../App";
 export default function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const { isDark } = useTheme();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [statusMessage, setStatusMessage] = useState(null);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
-    );
-    window.location.href = `mailto:bendarnoufel@gmail.com?subject=Contact%20from%20portfolio&body=${body}`;
+    setIsSubmitting(true);
+    setStatusMessage(null);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/bendarnoufel@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message,
+          _subject: "Contact from portfolio",
+          _replyto: formData.email,
+          _template: "table",
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
+
+      const result = await response.json();
+      if (result && (result.success === true || result.success === "true" || result.message)) {
+        setStatusMessage({ type: "success", text: "Message sent! I'll get back to you shortly." });
+        setFormData({ name: "", email: "", message: "" });
+      } else {
+        throw new Error("Unexpected response");
+      }
+    } catch (error) {
+      const body = encodeURIComponent(
+        `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
+      );
+      setStatusMessage({ type: "info", text: "Opening your email app to send the message..." });
+      window.location.href = `mailto:bendarnoufel@gmail.com?subject=Contact%20from%20portfolio&body=${body}`;
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e) => {
@@ -192,14 +230,38 @@ export default function Contact() {
               </motion.div>
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.03, y: -3 }}
-                whileTap={{ scale: 0.97 }}
-                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white font-semibold 
+                disabled={isSubmitting}
+                whileHover={{ scale: isSubmitting ? 1 : 1.03, y: isSubmitting ? 0 : -3 }}
+                whileTap={{ scale: isSubmitting ? 1 : 0.97 }}
+                className="w-full py-4 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 disabled:from-purple-400 disabled:to-pink-400 text-white font-semibold 
                            rounded-xl shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transition-all duration-300 flex items-center justify-center gap-3 text-lg"
               >
-                <FiSend className="w-5 h-5" />
-                Send Message
+                {isSubmitting ? (
+                  <>
+                    <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
+                    Sending...
+                  </>
+                ) : (
+                  <>
+                    <FiSend className="w-5 h-5" />
+                    Send Message
+                  </>
+                )}
               </motion.button>
+
+              {statusMessage && (
+                <p
+                  className={`mt-2 text-sm ${
+                    statusMessage.type === "success"
+                      ? "text-green-500"
+                      : statusMessage.type === "info"
+                      ? "text-yellow-500"
+                      : "text-red-500"
+                  }`}
+                >
+                  {statusMessage.text}
+                </p>
+              )}
             </form>
           </motion.div>
 
