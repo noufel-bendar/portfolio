@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 139 92 246; /* Purple-500 */
+    --color-secondary: 168 85 247; /* Purple-600 */
+    --color-accent: 236 72 153; /* Pink-500 */
+  }
+  
+  .dark {
+    --color-primary: 167 139 250; /* Purple-400 */
+    --color-secondary: 192 132 252; /* Purple-500 */
+    --color-accent: 244 114 182; /* Pink-400 */
+  }
+}
+
+@layer components {
+  /* ============================= */
+  /* Gradient Background Animation */
+  /* ============================= */
+  .hero-bg {
+    background: linear-gradient(
+      90deg, 
+      rgb(var(--color-primary)), 
+      rgb(var(--color-secondary)), 
+      rgb(var(--color-accent))
+    );
+    background-size: 200% 200%;
+  }
+  
+  .animate-gradient-x {
+    animation: gradient-x 20s ease infinite;
+  }
+  
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  /* ============================= */
+  /* Glow Effect Utility */
+  /* ============================= */
+  .glow {
+    box-shadow: 
+      0 0 15px rgba(var(--color-primary) / 0.6),
+      0 0 30px rgba(var(--color-secondary) / 0.4);
+  }
+  
+  /* ============================= */
+  /* Buttons */
+  /* ============================= */
+  .btn-primary {
+    @apply inline-flex items-center px-5 py-3 rounded-full shadow transform transition-all duration-200 font-medium;
+    background-color: rgb(var(--color-primary) / 0.9);
+    color: white;
+  }
+  .btn-primary:hover {
+    background-color: rgb(var(--color-primary));
+    box-shadow: 0 8px 20px rgba(var(--color-primary) / 0.4);
+    transform: scale(1.03);
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center px-5 py-3 rounded-full border font-medium transition-all duration-200;
+    border-color: rgba(var(--color-primary) / 0.3);
+    color: white;
+    background-color: transparent;
+  }
+  .btn-secondary:hover {
+    background-color: rgba(var(--color-primary) / 0.1);
+    transform: scale(1.03);
+  }
+
+  .btn-download {
+    @apply inline-flex items-center px-4 py-2 rounded-full font-medium transition-all duration-200;
+    background-color: rgb(0 0 0);
+    color: white;
+  }
+  .dark .btn-download {
+    background-color: white;
+    color: black;
+  }
+  .btn-download:hover {
+    opacity: 0.95;
+    transform: scale(1.02);
+  }
+  
+  /* ============================= */
+  /* Chips / Tags */
+  /* ============================= */
+  .tech-chip {
+    @apply px-3 py-1 rounded-full text-sm font-medium;
+    background-color: rgba(139, 92, 246, 0.1);
+    color: rgb(139 92 246); /* Purple-500 */
+    border: 1px solid rgba(139, 92, 246, 0.3);
+  }
+  .dark .tech-chip {
+    background-color: rgba(139, 92, 246, 0.15);
+    color: rgb(167 139 250); /* Purple-400 */
+    border: 1px solid rgba(139, 92, 246, 0.4);
+  }
+  
+  /* ============================= */
+  /* Light Mode Tech Chips */
+  /* ============================= */
+  .light .tech-chip {
+    background-color: rgba(139, 92, 246, 0.08);
+    color: rgb(107 33 168); /* Purple-700 */
+    border: 1px solid rgba(139, 92, 246, 0.2);
+  }
+  
+  /* ============================= */
+  /* Form Inputs */
+  /* ============================= */
+  .form-input {
+    @apply w-full px-4 py-3 rounded-lg border transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500;
+  }
+  
+  .form-input.dark {
+    @apply border-slate-600 bg-slate-700/50 text-white;
+  }
+  
+  .form-input.light {
+    @apply border-slate-300 bg-white/80 text-slate-800;
+  }
+  
+  /* ============================= */
+  /* Card Backgrounds */
+  /* ============================= */
+  .card-dark {
+    @apply bg-slate-800/50 border-slate-700/50;
+  }
+  
+  .card-light {
+    @apply bg-white/80 border-slate-200/50;
+  }
+  
+  /* ============================= */
+  /* Text Colors */
+  /* ============================= */
+  .text-primary-dark {
+    @apply text-white;
+  }
+  
+  .text-primary-light {
+    @apply text-slate-800;
+  }
+  
+  .text-secondary-dark {
+    @apply text-slate-300;
+  }
+  
+  .text-secondary-light {
+    @apply text-slate-600;
+  }
+  
+  .text-muted-dark {
+    @apply text-slate-400;
+  }
+  
+  .text-muted-light {
+    @apply text-slate-500;
+  }
+}
