@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { FiExternalLink, FiGithub, FiCode } from "react-icons/fi";
 import { useTheme } from "../App";
+import LiveDemoModal from "./LiveDemoModal";
 import ecoVisionImg from "../assets/2-bg.png";
 import specheckImg from "../assets/speclogo1_ai.png";
 import unoImg from "../assets/uno-logo.png";
@@ -13,11 +14,12 @@ const projects = [
     description: "An intelligent computer sales platform with a sophisticated rating system. Computers are categorized and rated based on specific use cases like gaming, student work, professional use, and more. Helps users make informed purchasing decisions.",
     image: specheckImg,
     technologies: ["React", "Django", "Tailwind CSS", "AOS", "Python", "JavaScript"],
-    liveUrl: "#",
+    liveUrl: "https://spec-check-six.vercel.app/",
     githubUrl: "https://github.com/noufel-bendar/SpecCheck",
     featured: true,
     category: "E-commerce Platform",
-    highlights: ["Smart Rating System", "Category-based Classification", "Product Management", "User Reviews"]
+    highlights: ["Smart Rating System", "Category-based Classification", "Product Management", "User Reviews"],
+    hasLiveDemo: true
   },
   {
     id: 2,
@@ -25,11 +27,12 @@ const projects = [
     description: "A comprehensive recycling website that connects sellers and buyers of recyclable materials. Features a points system where users earn rewards for contributing to environmental sustainability. Built with modern web technologies for optimal user experience.",
     image: ecoVisionImg,
     technologies: ["React", "Django", "Tailwind CSS", "AOS", "Python", "JavaScript"],
-    liveUrl: "#",
+    liveUrl: "https://eco-vision-swart.vercel.app/",
     githubUrl: "https://github.com/noufel-bendar/EcoVision",
     featured: false,
     category: "Web Application",
-    highlights: ["Points System", "User Authentication", "Material Marketplace", "Responsive Design"]
+    highlights: ["Points System", "User Authentication", "Material Marketplace", "Responsive Design"],
+    hasLiveDemo: true
   },
   {
     id: 3,
@@ -41,7 +44,8 @@ const projects = [
     githubUrl: "https://github.com/noufel-bendar/Uno-game",
     featured: false,
     category: "Game Development",
-    highlights: ["Complete Game Logic", "Card Management", "Turn System", "Clean Architecture"]
+    highlights: ["Complete Game Logic", "Card Management", "Turn System", "Clean Architecture"],
+    hasLiveDemo: false
   }
 ];
 
@@ -76,6 +80,18 @@ const floatingAnimation = {
 
 export default function Projects() {
   const { isDark } = useTheme();
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLiveDemo = (project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   return (
     <section id="projects" className={`py-20 relative overflow-hidden ${
@@ -257,15 +273,17 @@ export default function Projects() {
 
                 {/* Links */}
                 <div className="flex gap-3">
-                  <motion.a
-                    href={project.liveUrl}
-                    whileHover={{ scale: 1.05, y: -2 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg transition-all font-medium shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
-                  >
-                    <FiExternalLink className="w-4 h-4" />
-                    Live Demo
-                  </motion.a>
+                  {project.hasLiveDemo && (
+                    <motion.button
+                      onClick={() => handleLiveDemo(project)}
+                      whileHover={{ scale: 1.05, y: -2 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white rounded-lg transition-all font-medium shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40"
+                    >
+                      <FiExternalLink className="w-4 h-4" />
+                      Live Demo
+                    </motion.button>
+                  )}
                   <motion.a
                     href={project.githubUrl}
                     whileHover={{ scale: 1.05, y: -2 }}
@@ -308,6 +326,13 @@ export default function Projects() {
             Start a Project
           </motion.a>
         </motion.div>
+
+        {/* Live Demo Modal */}
+        <LiveDemoModal
+          isOpen={isModalOpen}
+          onClose={closeModal}
+          project={selectedProject}
+        />
       </div>
     </section>
   );

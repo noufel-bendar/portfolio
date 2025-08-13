@@ -14,15 +14,40 @@ export default function ContactModal({ onClose }) {
     e.preventDefault();
     setIsSubmitting(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 500));
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/bendarnoufel@gmail.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+          message,
+          _subject: "Contact from portfolio",
+          _replyto: email,
+          _template: "table",
+        }),
+      });
 
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\n\n${message}`
-    );
-    window.location.href = `mailto:bendarnoufel@gmail.com?subject=Contact%20from%20portfolio&body=${body}`;
+      if (!response.ok) {
+        throw new Error("Failed to send message");
+      }
 
-    setIsSubmitting(false);
-    onClose();
+      const result = await response.json();
+      if (!(result && (result.success === true || result.success === "true" || result.message))) {
+        throw new Error("Unexpected response");
+      }
+
+      onClose();
+    } catch (error) {
+      const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\n${message}`);
+      window.location.href = `mailto:bendarnoufel@gmail.com?subject=Contact%20from%20portfolio&body=${body}`;
+      onClose();
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

@@ -9,7 +9,7 @@ A modern, responsive portfolio website built with React, Framer Motion, and Tail
 - **Responsive**: Fully responsive design that works on all devices
 - **Smooth Animations**: Powered by Framer Motion for engaging user experience
 - **Contact Form**: Integrated contact form with email functionality
-- **Project Showcase**: Dedicated section to display your work
+- **Project Showcase**: Dedicated section to display your work with live demo modals
 - **Performance Optimized**: Built with Vite for fast development and building
 
 ## 🚀 Technologies Used
@@ -141,3 +141,37 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 Built with ❤️ using React and Tailwind CSS
+
+## 🚀 Deployment
+
+### Deploy to Vercel (Recommended)
+
+1. **Install Vercel CLI** (optional):
+```bash
+npm i -g vercel
+```
+
+2. **Deploy using Vercel Dashboard**:
+   - Push your code to GitHub
+   - Go to [vercel.com](https://vercel.com)
+   - Import your repository
+   - Vercel will automatically detect it's a Vite project
+   - Deploy with default settings
+
+3. **Deploy using Vercel CLI**:
+```bash
+vercel
+```
+
+4. **Environment Variables** (if needed):
+   - Add any environment variables in the Vercel dashboard
+   - The project is configured to work without additional environment variables
+
+### Manual Deployment
+
+1. Build the project:
+```bash
+npm run build
+```
+
+2. The built files will be in the `dist` directory, ready for deployment to any static hosting service.
