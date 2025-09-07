@@ -16,7 +16,7 @@ const projects = [
     image: l3InfoImg,
     technologies: ["React", "Django", "Tailwind CSS", "PostgreSQL", "Python", "JavaScript"],
     liveUrl: "https://l3-info.vercel.app/",
-    githubUrl: "#",
+    githubUrl: "https://github.com/noufel-bendar/L3",
     featured: true,
     category: "Educational Platform",
     highlights: ["Structured Lessons", "Student Resources", "Academic Support", "Interactive Learning"],
