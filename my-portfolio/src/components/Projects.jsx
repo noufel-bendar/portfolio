@@ -6,23 +6,37 @@ import LiveDemoModal from "./LiveDemoModal";
 import ecoVisionImg from "../assets/2-bg.png";
 import specheckImg from "../assets/speclogo1_ai.png";
 import unoImg from "../assets/uno-logo.png";
+import l3InfoImg from "../assets/favicon-copy.svg";
 
 const projects = [
   {
     id: 1,
+    title: "USTHB Informatique L3 LMD",
+    description: "A comprehensive educational platform designed to help university students studying Computer Science up to their 3rd year of Bachelor's degree. The platform provides structured lessons, resources, and study materials to support students throughout their academic journey.",
+    image: l3InfoImg,
+    technologies: ["React", "Django", "Tailwind CSS", "PostgreSQL", "Python", "JavaScript"],
+    liveUrl: "https://l3-info.vercel.app/",
+    githubUrl: "#",
+    featured: true,
+    category: "Educational Platform",
+    highlights: ["Structured Lessons", "Student Resources", "Academic Support", "Interactive Learning"],
+    hasLiveDemo: true
+  },
+  {
+    id: 2,
     title: "Specheck",
     description: "An intelligent computer sales platform with a sophisticated rating system. Computers are categorized and rated based on specific use cases like gaming, student work, professional use, and more. Helps users make informed purchasing decisions.",
     image: specheckImg,
     technologies: ["React", "Django", "Tailwind CSS", "AOS", "Python", "JavaScript"],
     liveUrl: "https://spec-check-six.vercel.app/",
     githubUrl: "https://github.com/noufel-bendar/SpecCheck",
-    featured: true,
+    featured: false,
     category: "E-commerce Platform",
     highlights: ["Smart Rating System", "Category-based Classification", "Product Management", "User Reviews"],
-    hasLiveDemo: true
+    hasLiveDemo: false
   },
   {
-    id: 2,
+    id: 3,
     title: "EcoVision",
     description: "A comprehensive recycling website that connects sellers and buyers of recyclable materials. Features a points system where users earn rewards for contributing to environmental sustainability. Built with modern web technologies for optimal user experience.",
     image: ecoVisionImg,
@@ -35,7 +49,7 @@ const projects = [
     hasLiveDemo: true
   },
   {
-    id: 3,
+    id: 4,
     title: "UNO Game",
     description: "A complete UNO card game implementation built in Java. Features all standard UNO game mechanics including card matching, special cards, and turn management. Designed with clean architecture principles for maintainability and extensibility.",
     image: unoImg,

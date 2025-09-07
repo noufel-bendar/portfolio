@@ -135,7 +135,7 @@ export default function Hero() {
               </motion.button>
 
               <motion.a
-                href="/CV_BENDAR_Noufel.pdf"
+                href="/CV.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open Bendar Noufel's CV in new tab"

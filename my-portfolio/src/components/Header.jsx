@@ -86,7 +86,7 @@ export default function Header() {
           <motion.a
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="/CV_BENDAR_Noufel.pdf"
+            href="/CV.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="px-4 py-2 rounded-lg border border-purple-500 text-purple-400 hover:bg-purple-500 hover:text-white transition-all duration-300"
@@ -149,7 +149,7 @@ export default function Header() {
               Contact Me
             </a>
             <a
-              href="/CV_BENDAR_Noufel.pdf"
+              href="/CV.pdf"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 py-2 rounded-lg border border-purple-500 text-purple-400 text-center hover:bg-purple-500 hover:text-white transition-colors"
