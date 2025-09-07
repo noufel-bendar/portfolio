@@ -14,7 +14,7 @@ const projects = [
     title: "USTHB Informatique L3 LMD",
     description: "A comprehensive educational platform designed to help university students studying Computer Science up to their 3rd year of Bachelor's degree. The platform provides structured lessons, resources, and study materials to support students throughout their academic journey.",
     image: l3InfoImg,
-    technologies: ["React", "Django", "Tailwind CSS", "PostgreSQL", "Python", "JavaScript"],
+    technologies: ["React", "Tailwind CSS", "PostgreSQL", "Python", "JavaScript", "Render"],
     liveUrl: "https://l3-info.vercel.app/",
     githubUrl: "https://github.com/noufel-bendar/L3",
     featured: true,

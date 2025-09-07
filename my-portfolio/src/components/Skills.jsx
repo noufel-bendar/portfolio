@@ -46,8 +46,7 @@ const skillCategories = [
     skills: [
       { name: "SQLite", level: 80, color: "from-blue-400 to-blue-500" },
       { name: "Oracle", level: 75, color: "from-red-500 to-orange-500" },
-      { name: "MySQL", level: 75, color: "from-blue-500 to-indigo-600" },
-      { name: "Django", level: 80, color: "from-green-600 to-green-700" }
+      { name: "MySQL", level: 75, color: "from-blue-500 to-indigo-600" }
     ]
   },
   {
@@ -80,7 +79,8 @@ const skillCategories = [
     description: "Deploying applications and managing development operations",
     skills: [
       { name: "Vercel", level: 75, color: "from-black to-gray-700" },
-      { name: "GitHub Pages", level: 80, color: "from-gray-600 to-gray-700" }
+      { name: "GitHub Pages", level: 80, color: "from-gray-600 to-gray-700" },
+      { name: "Render", level: 80, color: "from-green-500 to-green-600" }
     ]
   }
 ];
