@@ -6,7 +6,7 @@ import Projects from "./components/Projects";
 import Skills from "./components/Skills";
 import Contact from "./components/Contact";
 import Footer from "./components/Footer";
-
+import Cursor from "./components/Cursor";
 // Create theme context
 const ThemeContext = createContext();
 
@@ -46,6 +46,7 @@ export default function App() {
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
+      <Cursor />
       <div className={`min-h-screen transition-colors duration-300 ${
         isDark ? 'bg-slate-900' : 'bg-gray-50'
       }`}>
